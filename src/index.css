@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 90%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 90%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 90%;
+
+    --primary: 347 100% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 195 75% 22%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 180 87% 46%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 347 100% 52%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --topo: 195 75% 22%;
+    --meio: 42 100% 50%;
+    --fundo: 347 100% 52%;
+    
+    --success: 152 69% 45%;
+    --warning: 42 100% 50%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(347 100% 52%), hsl(347 100% 40%));
+    --gradient-accent: linear-gradient(135deg, hsl(180 87% 46%), hsl(195 75% 22%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 7%), hsl(0 0% 5%));
+    
+    --shadow-glow: 0 0 40px hsl(347 100% 52% / 0.15);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.3);
+
+    /* Diagnostic wizard colors */
+    --diagnostic-primary: 222 47% 11%;
+    --diagnostic-primary-foreground: 0 0% 98%;
+    --diagnostic-secondary: 160 84% 39%;
+    --diagnostic-secondary-foreground: 0 0% 98%;
+    --diagnostic-accent: 45 93% 47%;
+    --diagnostic-accent-foreground: 222 47% 11%;
+    --diagnostic-background: 220 14% 96%;
+    --diagnostic-border: 220 13% 91%;
+
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 347 100% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 347 100% 52%;
+  }
+
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+
+    --primary: 347 100% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 195 75% 22%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 180 87% 46%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 94%;
+    --ring: 347 100% 52%;
+
+    --shadow-glow: 0 0 40px hsl(347 100% 52% / 0.1);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.08);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl shadow-card;
+  }
+
+  .metric-card {
+    @apply glass-card p-5 hover:border-primary/30 transition-all duration-300;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-success {
+    @apply bg-success/20 text-success border border-success/30;
+  }
+
+  .status-warning {
+    @apply bg-warning/20 text-warning border border-warning/30;
+  }
+
+  .status-error {
+    @apply bg-destructive/20 text-destructive border border-destructive/30;
+  }
+
+  .funnel-topo {
+    @apply bg-secondary/20 text-secondary border border-secondary/30;
+  }
+
+  .funnel-meio {
+    @apply bg-warning/20 text-warning border border-warning/30;
+  }
+
+  .funnel-fundo {
+    @apply bg-primary/20 text-primary border border-primary/30;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200;
+  }
+
+  .nav-link-active {
+    @apply bg-primary/10 text-primary border-l-2 border-primary;
+  }
+
+  .calendar-day {
+    @apply aspect-square p-2 border border-border/30 rounded-lg hover:border-primary/50 transition-all cursor-pointer;
+  }
+
+  .calendar-day-today {
+    @apply ring-2 ring-primary/50;
+  }
+
+  .matrix-indicator {
+    @apply h-2 rounded-full transition-all duration-500;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .input-modern {
+    @apply bg-input border border-border/50 rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+}
